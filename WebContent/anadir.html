@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Añadir vehículo</title>
+	</head>
+	<body>
+<script type="text/javascript">
+function controlMatri(){
+	var matricula = document.getElementById('matri');
+	var len = matricula.value.length;
+	//if (len != 7) {
+	if (len < 7 || len > 7) {
+		window.alert("MATRICULA NO VÁLIDA\nLa matrícula debe contener 7 carácteres");
+		//return false;
+	} else {
+		var numeros = matricula.value.substr(0,4);
+		var letras = matricula.value.substr(4,3);
+		//if (numeros >= "0000" && numeros <= "9999"){
+		if (!isNaN(numeros)){
+			//window.alert("Numeros: " + numeros + " Letras: " + letras);
+			return true;
+		} else {
+			window.alert("MATRICULA NO VÁLIDA\nLos primeros 4 carácteres deben ser numéricos");
+			//return false;
+		}
+	}
+	
+}
+</script>
+		<fieldset>
+			<legend><h2>Añadir vehículo</h2></legend>
+			<form method="POST" action="anadir.jr">
+				Matrícula: <input type="text" name="matricula" id="matri" value="" maxlength="7"><br>
+				Marca: <input type="text" name="marca"><br>
+				Combustible: <select name="combustible"><option value="Gasolina">Gasolina</option><option value="Diesel">Diesel</option></select><br>
+				Consumo: <input type="number" name="consumo">L/100KM<br>
+				Automatico: <select name="automatico"><option value="true">Si</option><option value="false">No</option></select><br>
+				Numero de ruedas: <input type="number" name="ruedas"><br>
+				<input type="submit" value="Añadir" onclick="controlMatri()">
+			</form>
+		</fieldset>
+		<a href="index.html"><input type="button" value="Volver"></a>
+	</body>
+</html>

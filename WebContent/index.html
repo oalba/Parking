@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Parking</title>
+	</head>
+	<body>
+<script type="text/javascript">
+function controlMatri(){
+	var matricula = document.getElementById('matri');
+	var len = matricula.value.length;
+	if (len != 7) {
+	//if (len < 7 || len > 7) {
+		window.alert("MATRICULA NO VÁLIDA\nLa matrícula debe contener 7 carácteres");
+		//return false;
+	} else {
+		var numeros = matricula.value.substr(0,4);
+		var letras = matricula.value.substr(4,3);
+		//if (numeros >= "0000" && numeros <= "9999"){
+		if (!isNaN(numeros)){
+			//window.alert("Numeros: " + numeros + " Letras: " + letras);
+			return true;
+		} else {
+			window.alert("MATRICULA NO VÁLIDA\nLos primeros 4 carácteres deben ser numéricos");
+			//return false;
+		}
+	}
+	
+}
+</script>
+		<p><font color="blue"><u><h1>Gestión parking</h1></u></font></p>
+		<!-- <hr> -->
+		<fieldset>
+			<legend><h2>Mostrar vehículos</h2></legend>
+		<form method="POST" action="mostrar.jr">
+			<input type="submit" value="Mostrar">
+		</form>
+		</fieldset>
+		<!-- <hr> -->
+		<fieldset>
+			<legend><h2>Buscar vehículos</h2></legend>
+			<form method="POST" action="buscar.jr">
+				Matrícula:<input type="text" name="matricula" id="matri" value="" maxlength="7"><input type="submit" value="Buscar" onclick="controlMatri()">
+			</form>
+		</fieldset>
+		<!-- <hr> -->
+		<fieldset>
+			<legend><h2>Añadir vehículos</h2></legend>
+			<!-- <form method="POST" action=""> -->
+			<a href="anadir.html"><input type="button" value="Añadir"></a>
+			<!-- </form> -->
+		</fieldset>
+		<!-- <hr> -->
+		<fieldset>
+			<legend><h2>Eliminar vehículos</h2></legend>
+				<form method="POST" action="eliminar.jr">
+					Matrícula:<input type="text" name="matricula" id="matri" value="" maxlength="7"><input type="submit" value="Eliminar" onclick="controlMatri()">
+				</form>
+		</fieldset>
+	</body>
+</html>
