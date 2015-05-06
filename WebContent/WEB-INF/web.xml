@@ -49,4 +49,24 @@
     <servlet-name>Eliminar</servlet-name>
     <url-pattern>/eliminar.jr</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>Modificar</display-name>
+    <servlet-name>Modificar</servlet-name>
+    <servlet-class>com.zubiri.Parking.Modificar</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Modificar</servlet-name>
+    <url-pattern>/modificar.jr</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ModificarOk</display-name>
+    <servlet-name>ModificarOk</servlet-name>
+    <servlet-class>com.zubiri.Parking.ModificarOk</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ModificarOk</servlet-name>
+    <url-pattern>/modificarok.jr</url-pattern>
+  </servlet-mapping>
 </web-app>

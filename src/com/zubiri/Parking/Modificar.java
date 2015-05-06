@@ -2,10 +2,6 @@ package com.zubiri.Parking;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-//import java.sql.Connection;
-//import java.sql.DriverManager;
-//import java.sql.ResultSet;
-//import java.sql.Statement;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -13,18 +9,17 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import java.sql.*;
-//import com.zubiri.parking.*;
 
 /**
- * Servlet implementation class Buscar
+ * Servlet implementation class Modificar
  */
-public class Buscar extends HttpServlet {
+public class Modificar extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Buscar() {
+    public Modificar() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -55,43 +50,37 @@ public class Buscar extends HttpServlet {
 		    ResultSet rs = stmt.executeQuery("SELECT * FROM vehiculos WHERE matricula = '"+matricula+"'");
 		response.setContentType("text/html;charset=UTF-8");
 		PrintWriter out = response.getWriter();
-		//--Vehiculo vehiculo = new Vehiculo();
-		
-		//--String matricula = request.getParameter("matricula");
-		//--ParkingVehiculos.findVehiculo(matricula);
+
 		out.println("<html>");
 		out.println("<head><title></title></head>");
 		out.println("<body>");
 		//String auto = null;
 		while (rs.next()) {
-	    	//String matricula = rs.getString("matricula");
-	    	out.println("Matrícula: " + rs.getString("matricula") + "<br>");
-	    	out.println("Marca: " + rs.getString("marca") + "<br>");
-	    	out.println("Combustible: " + rs.getString("combustible") + "<br>");
-	    	out.println("Consumo: " + rs.getInt("consumo") + "<br>");
-	    	/*if (rs.getString("automatico")=="true") {
-	    		auto = "Si";
+		out.print("<fieldset><legend><h2>Modificar vehículo</h2></legend>");
+		out.print("<form method='POST' action='modificarok.jr'>");
+			out.print("Matrícula: <input type='text' name='matricula' id='matri' value='"+matricula+"' maxlength='7'><br>");
+			out.print("Matrícula: "+matricula+"<br>");
+			out.print("Marca: <input type='text' name='marca' value='"+rs.getString("marca")+"'><br>");
+			out.print("Combustible: <select name='combustible'>");
+			if (rs.getString("combustible")=="Gasolina") {
+				out.print("<option value='Gasolina' selected>Gasolina</option><option value='Diesel'>Diesel</option></select><br>");
 			} else {
-				auto = "No";
+				out.print("<option value='Gasolina'>Gasolina</option><option value='Diesel' selected>Diesel</option></select><br>");
 			}
-	    	out.println("Automático: " + auto + "<hr>");*/
-	    	out.println("Automático: " + rs.getString("automatico") + "<br>");
-	    	out.println("Número de ruedas: " + rs.getInt("ruedas") + "<hr>");
-	    }
-		//out.print(ParkingVehiculos.formattedParking());
-		
-		out.println("<br/><a href='index.html'><input type='button' value='Volver'></a>");
+			out.print("Consumo: <input type='number' name='consumo' value='"+rs.getInt("consumo")+"'>L/100KM<br>");
+			out.print("Automatico: <select name='automatico'>");
+			if (rs.getString("automatico")=="true") {
+				out.print("<option value='true' selected>Si</option><option value='false'>No</option></select><br>");
+			} else {
+				out.print("<option value='true'>Si</option><option value='false' selected>No</option></select><br>");
+			}
+			out.print("Numero de ruedas: <input type='number' name='ruedas' value='"+rs.getInt("ruedas")+"'><br>");
+			out.print("<input type='submit' value='Modificar'>");
+		out.print("</form>");
+		out.print("</fieldset><a href='index.html'><input type='button' value='Volver'></a>");
+		}
 		out.println("</body></html>");
 		
-		
-		
-		/*out.println("<html>");
-		out.println("<head><title></title></head>");
-		out.println("<body>");
-		ParkingVehiculos.findVehiculo(matricula);
-		//out.println("La matrícula introducida es: " + ParkingVehiculos.findVehiculo(matricula).getMatricula());
-		//ParkingVehiculos.findVehiculo(matricula).getMatricula();
-		out.println("</body></html>");*/
 		cone.close();
 		}catch(Exception ex){
 			//Tratar el error
