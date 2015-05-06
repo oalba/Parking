@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.zubiri.parking.*;
+//import com.zubiri.parking.*;
 
 import java.sql.*;
 //import java.util.*;
@@ -59,8 +59,7 @@ public class Anadir extends HttpServlet {
 		int consumo = Integer.parseInt(request.getParameter("consumo"));
 		boolean auto = Boolean.valueOf(request.getParameter("automatico"));
 		int ruedas = Integer.parseInt(request.getParameter("ruedas"));*/
-		stmt.executeUpdate("INSERT INTO vehiculos(matricula, marca, combustible, consumo, automatico, ruedas) "
-				+ "VALUES ("+matricula+","+marca+","+combus+","+consumo+","+auto+","+ruedas+")");
+		
 		
 		
 		
@@ -78,16 +77,24 @@ public class Anadir extends HttpServlet {
 		out.println("<head><title></title></head>");
 		out.println("<body>");
 		out.println("DATOS:<hr>");
-		/*out.println("Matrícula: " + coche.getMatricula() + "<br>");
-		out.println("Marca: " + coche.getMarca() + "<br>");
-		out.println("Combustible: " + coche.getCombustible() + "<br>");
-		out.println("Consumo: " + coche.getConsumo100km() + "<br>");
-		out.println("Automático: " + coche.getAutomatico() + "<br>");
-		out.println("Número de ruedas: " + coche.getNumRuedas() + "<br>");*/
-
+		out.println("Matrícula: " + request.getParameter("matricula") + "<br>");
+		out.println("Marca: " + request.getParameter("marca") + "<br>");
+		out.println("Combustible: " + request.getParameter("combustible") + "<br>");
+		out.println("Consumo: " + Integer.parseInt(request.getParameter("consumo")) + "<br>");
+		out.println("Automático: " + Boolean.valueOf(request.getParameter("automatico")) + "<br>");
+		out.println("Número de ruedas: " + Integer.parseInt(request.getParameter("ruedas")) + "<br>");
+		stmt.executeUpdate("INSERT INTO vehiculos (matricula, marca, combustible, consumo, automatico, ruedas) VALUES ('"
+				+request.getParameter("matricula")+"','"
+				+request.getParameter("marca")+"','"
+				+request.getParameter("combustible")
+				+"',"+Integer.parseInt(request.getParameter("consumo"))+",'"
+				+Boolean.valueOf(request.getParameter("automatico"))+"',"
+				+Integer.parseInt(request.getParameter("ruedas"))+
+				")");
+		//stmt.executeUpdate("INSERT INTO vehiculos (matricula, marca, combustible, consumo, automatico, ruedas) VALUES ('2222aaa','audi','diesel',3,'true',2)");
 		out.println("<a href='index.html'><input type='button' value='Volver'></a>");
 		out.println("</body></html>");
-		//cone.close();
+		cone.close();
 		}catch(Exception ex){
 			//Tratar el error
 		}

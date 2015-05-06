@@ -78,7 +78,7 @@ public class Mostrar extends HttpServlet {
 		
 		out.println("<br/><a href='index.html'><input type='button' value='Volver'></a>");
 		out.println("</body></html>");
-		rs.close();
+		cone.close();
 		}catch(Exception ex){
 			//Tratar el error
 		}
