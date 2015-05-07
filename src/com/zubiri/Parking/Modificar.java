@@ -79,6 +79,7 @@ public class Modificar extends HttpServlet {
 		out.print("</form>");
 		out.print("</fieldset><a href='index.html'><input type='button' value='Volver'></a>");
 		}
+		
 		out.println("</body></html>");
 		
 		cone.close();
@@ -86,5 +87,6 @@ public class Modificar extends HttpServlet {
 			//Tratar el error
 		}
 	}
+	
 
 }

@@ -56,15 +56,18 @@ public class ModificarOk extends HttpServlet {
 		out.println("Consumo: " + Integer.parseInt(request.getParameter("consumo")) + "<br>");
 		out.println("Automático: " + Boolean.valueOf(request.getParameter("automatico")) + "<br>");
 		out.println("Número de ruedas: " + Integer.parseInt(request.getParameter("ruedas")) + "<br>");
-		stmt.executeUpdate("UPDATE vehiculos SET marca = '"+request.getParameter("marca")
+		stmt.execute("UPDATE vehiculos SET marca = '"+request.getParameter("marca")
 				+"', combustible = '"+request.getParameter("combustible")
-				+"', consumo = "+Integer.parseInt(request.getParameter("consumo"))
-				+", automatico = '"+Boolean.valueOf(request.getParameter("automatico"))
-				+"', ruedas = "+Integer.parseInt(request.getParameter("ruedas"))
-				+" WHERE matricula = '"+ request.getParameter("matricula") +"')");
+				+"', consumo = "+request.getParameter("consumo")
+				+", automatico = '"+request.getParameter("automatico")
+				+"', ruedas = "+request.getParameter("ruedas")
+				+" WHERE matricula = '"+ request.getParameter("matricula") +"'");
+
+		//update vehiculos set marca = 'Mercedes', combustible = 'Diesel', consumo = 10, automatico = 'true', ruedas = 4 where matricula = '2222bbb';
 		//stmt.executeUpdate("INSERT INTO vehiculos (matricula, marca, combustible, consumo, automatico, ruedas) VALUES ('2222aaa','audi','diesel',3,'true',2)");
 		out.println("<a href='index.html'><input type='button' value='Volver'></a>");
 		out.println("</body></html>");
+		stmt.close();
 		cone.close();
 		}catch(Exception ex){
 			//Tratar el error
