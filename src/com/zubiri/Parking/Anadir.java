@@ -70,6 +70,13 @@ public class Anadir extends HttpServlet {
 		coche.setAutomatico(auto);
 		coche.setNumRuedas(ruedas);
 		ParkingVehiculos.parkingvehiculos.add(coche);*/
+		stmt.executeUpdate("CREATE TABLE IF NOT EXISTS vehiculos"
+				+"(matricula varchar(7) primary key,"
+				+"marca varchar(25),"
+				+"combustible enum('Diesel','Gasolina'),"
+				+"consumo integer unsigned,"
+				+"automatico enum('true','false'),"
+				+"ruedas integer unsigned)");
 		
 		
 		
