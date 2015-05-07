@@ -6,12 +6,14 @@
 	</head>
 	<body>
 <script type="text/javascript">
+
 function controlMatri(){
 	var matricula = document.getElementById('matri');
 	var len = matricula.value.length;
 	if (len != 7) {
 	//if (len < 7 || len > 7) {
 		window.alert("MATRICULA NO VÁLIDA\nLa matrícula debe contener 7 carácteres");
+		history.go(-1);
 		//return false;
 	} else {
 		var numeros = matricula.value.substr(0,4);
@@ -22,10 +24,27 @@ function controlMatri(){
 			return true;
 		} else {
 			window.alert("MATRICULA NO VÁLIDA\nLos primeros 4 carácteres deben ser numéricos");
+			history.go(-1);
 			//return false;
 		}
-	}
-	
+	}	
+}
+
+function seguro(){
+	var matriculae = document.getElementById('matrie');
+	confirmar=confirm("¿Seguro que desea eliminar el vehículo con la matricula: "+matriculae+"?"); 
+	//if (!confirm("¿Seguro que desea eliminar el vehículo con la matricula: "+matricula+"?") {
+	if (confirmar) {
+		// si pulsamos en aceptar
+		alert('El vehículo se eliminará.');
+		return true;
+	}else{ 
+		// si pulsamos en cancelar
+		window.location.href="./index.html";
+		//alert('Eliminación cancelada.');
+		//window.open("./index.html");
+		//history.go(-1);
+	}			
 }
 </script>
 		<p><font color="blue"><u><h1>Gestión parking</h1></u></font></p>
@@ -54,7 +73,7 @@ function controlMatri(){
 		<fieldset>
 			<legend><h2>Eliminar vehículos</h2></legend>
 				<form method="POST" action="eliminar.jr">
-					Matrícula:<input type="text" name="matricula" id="matri" value="" maxlength="7"><input type="submit" value="Eliminar"><!-- <input type="submit" value="Eliminar" onclick="controlMatri()">-->
+					Matrícula:<input type="text" name="matricula" id="matrie" value="" maxlength="7"><input type="submit" value="Eliminar" onclick="seguro()"><!-- <input type="submit" value="Eliminar" onclick="controlMatri()">-->
 				</form>
 		</fieldset>
 		<fieldset>

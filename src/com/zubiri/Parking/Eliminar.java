@@ -6,6 +6,7 @@ import java.io.PrintWriter;
 //import java.sql.DriverManager;
 //import java.sql.Statement;
 
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -49,12 +50,28 @@ public class Eliminar extends HttpServlet {
 		response.setContentType("text/html;charset=UTF-8");
 		PrintWriter out = response.getWriter();
 		String matricula = request.getParameter("matricula");
+		ResultSet rs = stmt.executeQuery("SELECT * FROM vehiculos WHERE matricula = '"+matricula+"'");
 	
 		out.println("<html>");
 		out.println("<head><title></title></head>");
 		out.println("<body>");
-		
+		while (rs.next()) {
+	    	//String matricula = rs.getString("matricula");
+	    	out.println("Matrícula: " + rs.getString("matricula") + "<br>");
+	    	out.println("Marca: " + rs.getString("marca") + "<br>");
+	    	out.println("Combustible: " + rs.getString("combustible") + "<br>");
+	    	out.println("Consumo: " + rs.getInt("consumo") + "<br>");
+	    	/*if (rs.getString("automatico")=="true") {
+	    		auto = "Si";
+			} else {
+				auto = "No";
+			}
+	    	out.println("Automático: " + auto + "<hr>");*/
+	    	out.println("Automático: " + rs.getString("automatico") + "<br>");
+	    	out.println("Número de ruedas: " + rs.getInt("ruedas") + "<hr>");
+	    }
 		stmt.executeUpdate("DELETE FROM vehiculos WHERE matricula = '"+matricula+"'");
+		out.println("Vehículo eliminado correctamente.");
 		//ParkingVehiculos.deleteVehiculo(matricula);
 		out.println("<br/><a href='index.html'><input type='button' value='Volver'></a>");
 		out.println("</body></html>");
