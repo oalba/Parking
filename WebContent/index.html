@@ -13,8 +13,8 @@ function controlMatri(){
 	if (len != 7) {
 	//if (len < 7 || len > 7) {
 		window.alert("MATRICULA NO VÁLIDA\nLa matrícula debe contener 7 carácteres");
-		history.go(-1);
-		//return false;
+		//history.go(-1);
+		return false;
 	} else {
 		var numeros = matricula.value.substr(0,4);
 		var letras = matricula.value.substr(4,3);
@@ -24,23 +24,24 @@ function controlMatri(){
 			return true;
 		} else {
 			window.alert("MATRICULA NO VÁLIDA\nLos primeros 4 carácteres deben ser numéricos");
-			history.go(-1);
-			//return false;
+			//history.go(-1);
+			return false;
 		}
 	}	
 }
 
 function seguro(){
-	var matriculae = document.getElementById('matrie');
-	confirmar=confirm("¿Seguro que desea eliminar el vehículo con la matricula: "+matriculae+"?"); 
+	var matricula = document.getElementById('matri');
+	confirmar=confirm("¿Seguro que desea eliminar el vehículo con la matricula: " + matricula + "?"); 
 	//if (!confirm("¿Seguro que desea eliminar el vehículo con la matricula: "+matricula+"?") {
 	if (confirmar) {
 		// si pulsamos en aceptar
 		alert('El vehículo se eliminará.');
 		return true;
 	}else{ 
+		return false;
 		// si pulsamos en cancelar
-		window.location.href="./index.html";
+		//window.location.href="./index.html";
 		//alert('Eliminación cancelada.');
 		//window.open("./index.html");
 		//history.go(-1);
@@ -58,7 +59,7 @@ function seguro(){
 		<!-- <hr> -->
 		<fieldset>
 			<legend><h2>Buscar vehículos</h2></legend>
-			<form method="POST" action="buscar.jr">
+			<form method="POST" action="buscar.jr" onsubmit="return controlMatri()">
 				Matrícula:<input type="text" name="matricula" id="matri" value="" maxlength="7"><input type="submit" value="Buscar"><!-- <input type="submit" value="Buscar" onclick="controlMatri()">-->
 			</form>
 		</fieldset>
@@ -72,13 +73,13 @@ function seguro(){
 		<!-- <hr> -->
 		<fieldset>
 			<legend><h2>Eliminar vehículos</h2></legend>
-				<form method="POST" action="eliminar.jr">
-					Matrícula:<input type="text" name="matricula" id="matrie" value="" maxlength="7"><input type="submit" value="Eliminar" onclick="seguro()"><!-- <input type="submit" value="Eliminar" onclick="controlMatri()">-->
+				<form method="POST" action="eliminar.jr" onsubmit="return seguro()">
+					Matrícula:<input type="text" name="matricula" id="matri" value="" maxlength="7"><input type="submit" value="Eliminar"><!-- <input type="submit" value="Eliminar" onclick="controlMatri()">-->
 				</form>
 		</fieldset>
 		<fieldset>
 			<legend><h2>Modificar vehículos</h2></legend>
-				<form method="POST" action="modificar.jr">
+				<form method="POST" action="modificar.jr" onsubmit="return controlMatri()">
 					Matrícula:<input type="text" name="matricula" id="matri" value="" maxlength="7"><input type="submit" value="Modificar"><!-- <input type="submit" value="Modificar" onclick="controlMatri()">-->
 				</form>
 		</fieldset>
